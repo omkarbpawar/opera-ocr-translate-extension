@@ -1,3 +1,5 @@
+console.log("Content script loaded.");
+
 let startX, startY, endX, endY;
 let selectionBox;
 let isSelecting = false;
@@ -57,9 +59,30 @@ function updateSelectionBox() {
   selectionBox.style.height = Math.abs(startY - endY) + "px";
 }
 
-// Listen for messages from popup to start selection
-chrome.runtime.onMessage.addListener((request) => {
-  if (request.action === "startSelection") {
-    createOverlay();
+// Process the captured image and crop to the selected area
+chrome.runtime.onMessage.addListener(async (request) => {
+  if (request.action === "processImage") {
+    const { imageUrl, startX, startY, endX, endY } = request;
+    const croppedImage = await cropImage(imageUrl, startX, startY, endX - startX, endY - startY);
+    chrome.runtime.sendMessage({ action: "processCroppedImage", image: croppedImage });
   }
 });
+
+// Crop the captured image to the selected region
+async function cropImage(imageUrl, x, y, width, height) {
+  const img = new Image();
+  img.src = imageUrl;
+
+  return new Promise((resolve) => {
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+
+      // Draw the selected area of the image on the canvas
+      ctx.drawImage(img, x, y, width, height, 0, 0, width, height);
+      resolve(canvas.toDataURL("image/png"));
+    };
+  });
+}

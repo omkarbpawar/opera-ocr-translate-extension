@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tailwind.css">
+</head>
+
+<body>
+    <div id="loader" class="w-full flex h-full items-center justify-center">
+        <span class="loader"></span>
+    </div>
+    <div id="login-screen" class="hidden h-full mb-6 w-2/3 flex-col gap-2 mx-auto pt-[200px] items-center relative">
+        <button id="login-with-google-btn"
+            class="flex w-full drop-shadow-[0px_1px_2px_rgba(0,0,0,0.15)] hover:drop-shadow-[0px_2px_4px_rgba(0,0,0,0.25)] transition gap-2 px-6 py-3 rounded-full flex-row items-center justify-center bg-white text-base font-semibold">
+            <img src="../images/google.svg" alt="">
+            Continue with Google
+        </button>
+        <div class="flex flex-row w-full items-center py-2">
+            <div class="w-full border-b border-zinc-400"></div>
+            <p class="whitespace-nowrap px-2 notosans text-zinc-500">or sign in with email</p>
+            <div class="w-full border-b border-zinc-400"></div>
+        </div>
+        <div
+            class="w-full flex flex-row gap-2 px-4 items-center justify-center py-3 text-sm rounded-lg drop-shadow-[0px_1px_2px_rgba(0,0,0,0.15)] bg-white">
+            <img width="20" height="20" src="../images/feedback.svg" alt="">
+            <input type="email" class="w-full focus:outline-none flex justify-left items-center"
+                placeholder="Enter your email" id="email-input">
+        </div>
+        <button id="login-with-email-btn"
+            class="flex w-full mt-2 drop-shadow-[0px_1px_2px_rgba(0,0,0,0.15)] hover:drop-shadow-[0px_2px_4px_rgba(0,0,0,0.25)] transition gap-2 px-6 py-3 rounded-full flex-row items-center justify-center text-white bg-zinc-800 hover:bg-zinc-700 text-base font-semibold">
+            Sign in
+        </button>
+        <div class="w-full gap-2 py-4 flex flex-col items-center justify-center">
+            <div id="login-info"
+                class="hidden notosans text-gray text-base text-center flex-col items-center justify-center bg-sky-200 w-full p-4 rounded-xl">
+            </div>
+            <div id="login-error"
+                class="hidden notosans text-gray text-base bg-rose-200 flex-col items-center justify-center w-full p-4 rounded-xl text-center">
+            </div>
+        </div>
+        <p class="text-center text-gray text-[0.7rem] absolute bottom-5 notosans">
+            By continuing, you are indicating that you accept our
+            <a href="https://toriitranslate.com/terms" target="_blank" class="text-sky-400 hover:underline">Terms of
+                Service</a>
+            and
+            <a href="https://toriitranslate.com/privacy" target="_blank" class="text-sky-400 hover:underline">Privacy
+                Policy</a>.
+        </p>
+    </div>
+    <div id="extension" class="hidden flex-col h-full w-full">
+        <div id="extension-home" class="h-full w-full mx-auto flex flex-col gap-4 items-center">
+            <div id="extension-status"
+                class="w-4/5 flex flex-row flex-nowrap mt-[10.7rem] px-[10px] py-[6px] rounded-lg dropshadow justify-between raleway text-xl bg-white border-2 border-blue">
+                <p class="font-bold text-gray flex flex-row items-center">
+                    <span id="extension-status-text" class="text-blue font-extrabold pr-1">Enabled</span>
+                    on this page
+                </p>
+                <div id="switch-outer" class="w-[75px] h-[33px] font-bold text-base rounded-2xl flex items-center">
+                    <label id="switch-inner"
+                        class="flex items-center justify-between w-full h-full bg-blue cursor-pointer scale-x-95 scale-y-90 rounded-2xl relative mx-auto">
+                        <input type="checkbox" id="extension-enabled" class="h-0 w-0 opacity-0">
+                        <div id="slider-outer" class="rounded-full absolute bg-white flex items-center">
+                            <div id="slider-inner" class="w-2/3 h-2/3 rounded-full mx-auto">
+                            </div>
+                        </div>
+                        <span id="extension-on" class="pl-2 on-on text-dropshadow">ON</span>
+                        <span id="extension-off" class="pr-2 off-on">OFF</span>
+                    </label>
+                </div>
+            </div>
+            <div id="extension-credits"
+                class="h-48 w-4/5 flex flex-col rounded-lg border-2 overflow-hidden border-blue dropshadow">
+                <div class="h-1/5 w-full raleway flex flex-row border-b-2 border-blue">
+                    <div id="plan"
+                        class="text-dropshadow text-center bg-blue tracking-wide leading-9 h-full w-1/2 font-black text-2xl text-white">
+                        FREE TRIAL
+                    </div>
+                    <a id="upgrade" href="https://toriitranslate.com/pricing" target="_blank"
+                        title="Link to pricing page"
+                        class="text-dropshadow effect-shine bg-orange text-center tracking-wide leading-9 h-full w-1/2 font-black text-2xl text-white">
+                        UPGRADE
+                    </a>
+                </div>
+                <div id="credits-area"
+                    class="h-4/5 w-full bg-white border-blue flex flex-col gap-2 items-center justify-center">
+                    <div id="credits" class="text-[5rem] mt-3 font-bold text-gray notosans"></div>
+                    <div
+                        class="text-description raleway flex flex-row gap-1 justify-center items-center text-base font-normal">
+                        available translation credits
+                        <a href="https://toriitranslate.com/faq" target="_blank" title="Link to FAQ page"><img
+                                src="../images/faq_gray.svg" alt="FAQ" width="20" height="20"></a>
+                    </div>
+                </div>
+                <div id="countdown-area"
+                    class="h-1/6 w-full hidden flex-row gap-4 items-center justify-center bg-offwhite">
+                    <span id="countdown-text" class="text-description raleway text-[0.85rem] font-semibold"></span>
+                    <span id="countdown" class="text-gray-600 notosans font-bold text-[0.85rem]"></span>
+                </div>
+            </div>
+            <div id="extension-language" class="w-4/5 h-[60px] flex flex-row gap-4">
+                <div
+                    class="flex flex-col w-full rounded-lg dropshadow raleway overflow-hidden bg-blue border-2 border-blue">
+                    <div
+                        class="h-2/6 w-full pl-1.5 py-2 flex items-center text-white text-dropshadow text-[0.85rem] font-normal">
+                        Translate from:
+                    </div>
+                    <div class="h-4/6 w-full pr-1 bg-white text-lg">
+                        <select name="Source Language" id="source-language"
+                            class="h-full w-full language-select font-bold pl-1 text-gray"></select>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col w-full rounded-lg dropshadow raleway overflow-hidden bg-blue border-2 border-blue">
+                    <div
+                        class="h-2/6 w-full pl-1.5 py-2 flex items-center text-white text-dropshadow text-[0.85rem] font-normal">
+                        Translate to:
+                    </div>
+                    <div class="h-4/6 w-full pr-1 bg-white text-lg">
+                        <select name="Target Language" id="target-language"
+                            class="h-full w-full language-select font-bold pl-1 text-gray"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="extension-feedback" class="hidden w-4/5 h-full raleway flex-col gap-4 mx-auto relative">
+            <div id="extension-feedback-box"
+                class="h-[46%] w-full mt-[10.7rem] flex bg-blue flex-col rounded-lg border-2 overflow-hidden border-blue dropshadow">
+                <div
+                    class="w-full pl-2 flex flex-row items-center justify-between text-dropshadow text-white text-left font-semibold text-lg border-b-2 border-blue">
+                    <p id="feedback-send-title">Anything you'd like to share?</p>
+                    <p id="feedback-inbox-title" class="hidden">Feedback replies:</p>
+                    <p id="feedback-reply-title"
+                        class="hidden w-5/6 text-ellipsis text-nowrap whitespace-nowrap overflow-hidden"></p>
+                    <div id="feedback-switch"
+                        class="w-11 bg-orange h-full flex items-center justify-center cursor-pointer">
+                        <img id="feedback-switch-inbox" src="../images/feedback_inbox.svg" title="To inbox" alt=""
+                            width="20" height="20" class="filter-dropshadow hover:scale-110">
+                        <img id="feedback-switch-send" src="../images/feedback_send.svg" title="To feedback" alt=""
+                            width="20" height="20" class="hidden filter-dropshadow hover:scale-110">
+                        <img id="feedback-switch-back" src="../images/feedback_back.svg" title="To inbox" alt=""
+                            width="20" height="20" class="hidden filter-dropshadow hover:scale-110">
+                        <div
+                            class="reply-badge absolute rounded-full dropshadow text-xs hidden items-center justify-center text-white font-medium raleway bg-red-400 top-[10.3rem] -right-1 w-[18px] h-[18px]">
+                            1
+                        </div>
+                    </div>
+                </div>
+                <textarea name="feedback" id="feedback-textarea" placeholder="I hope you're writing something nice ..."
+                    class="h-full w-full bg-white px-2 py-1 resize-none font-light text-base text-description focus:outline-none"></textarea>
+                <div id="feedback-inbox" class="hidden flex-col notosans overflow-y-auto w-full h-full bg-white">
+                </div>
+                <div id="feedback-reply"
+                    class="hidden notosans px-2 py-1 font-normal whitespace-pre-line overflow-y-auto text-wrap break-words text-base w-full h-full bg-white">
+                </div>
+            </div>
+            <div id="feedback-send-button" class="w-full flex flex-row justify-between">
+                <button id="extension-feedback-submit"
+                    class="w-1/3 h-10 py-0.5 hover:scale-110 bg-blue rounded-lg dropshadow text-dropshadow text-white text-2xl font-extrabold">
+                    SEND
+                </button>
+                <span id="feedback-success"
+                    class="w-[64%] h-10 p-1 bg-transparent hidden items-center justify-center text-blue text-2xl font-bold">
+                    Thank you!
+                </span>
+                <span id="feedback-error"
+                    class="w-[64%] h-10 p-1 bg-transparent hidden items-center justify-center text-red text-2xl font-bold">
+                    Oops! Error occured.
+                </span>
+            </div>
+        </div>
+        <div id="extension-settings" class="hidden h-full w-4/5 raleway mx-auto flex-col gap-2">
+            <div
+                class="w-full flex flex-col bg-blue overflow-hidden mt-[10.7rem] rounded-lg dropshadow raleway text-xl bg-white border-2 border-blue">
+                <div class="w-full h-1/3 pl-2 flex items-center text-white text-dropshadow text-sm font-normal">
+                    Default behavior for every new page
+                </div>
+                <div
+                    class="w-full h-4/6 bg-white flex flex-row flex-nowrap justify-between px-[10px] py-1 items-center">
+                    <p class="font-bold text-gray leading-8">
+                        <span id="extension-default-status-text" class="text-blue font-extrabold">Enabled</span>
+                        by default
+                    </p>
+                    <div id="switch-outer" class="w-[75px] h-[33px] font-bold text-base rounded-2xl flex items-center">
+                        <label id="switch-inner"
+                            class="flex items-center justify-between w-full h-full bg-blue cursor-pointer scale-x-95 scale-y-90 rounded-2xl relative mx-auto">
+                            <input type="checkbox" id="extension-default-enabled" class="h-0 w-0 opacity-0">
+                            <div id="slider-outer" class="rounded-full absolute bg-white flex items-center">
+                                <div id="slider-inner" class="w-2/3 h-2/3 rounded-full mx-auto">
+                                </div>
+                            </div>
+                            <span id="extension-default-on" class="pl-2 on-on text-dropshadow">ON</span>
+                            <span id="extension-default-off" class="pr-2 off-on">OFF</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="w-full flex flex-col bg-blue mt-[1px] overflow-hidden rounded-lg dropshadow raleway text-xl bg-white border-2 border-blue">
+                <div class="w-full h-1/3 pl-2 flex items-center text-white text-dropshadow text-sm font-normal">
+                    Change Torii icon visibility (useful for mobile)
+                </div>
+                <div
+                    class="w-full h-4/6 bg-white flex flex-row flex-nowrap justify-between px-[10px] py-1 items-center">
+                    <p id="extension-visible-status-text" class="font-bold text-gray leading-8">
+                    </p>
+                    <div id="visible-switch-outer"
+                        class="w-[75px] h-[33px] font-bold text-base rounded-2xl flex items-center">
+                        <label id="visible-switch-inner"
+                            class="flex items-center justify-between w-full h-full bg-blue cursor-pointer scale-x-95 scale-y-90 rounded-2xl relative mx-auto">
+                            <input type="checkbox" id="extension-default-visible" class="h-0 w-0 opacity-0">
+                            <div id="visible-slider-outer" class="rounded-full absolute bg-white flex items-center">
+                                <div id="visible-slider-inner" class="w-2/3 h-2/3 rounded-full mx-auto">
+                                </div>
+                            </div>
+                            <span id="extension-visible-on" class="pl-2 on-on text-dropshadow">ON</span>
+                            <span id="extension-visible-off" class="pr-2 off-on">OFF</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="w-full flex flex-col bg-blue mt-[1px] overflow-hidden rounded-lg dropshadow raleway text-xl bg-white border-2 border-blue">
+                <div class="w-full h-1/3 pl-2 flex items-center text-white text-dropshadow text-sm font-normal">
+                    Select the font for the translated text
+                </div>
+                <div
+                    class="w-full h-full flex bg-white flex-row flex-nowrap items-center justify-between px-[10px] py-2">
+                    <p class="font-bold text-gray">
+                        Font:
+                    </p>
+                    <div id="font-size-outer" class="w-[235px] h-[33px] rounded-2xl flex items-center">
+                        <div id="font-size-inner"
+                            class="flex flex-row scale-x-[0.98] scale-y-90 rounded-2xl bg-blue w-full h-full items-center justify-between">
+                            <select name="Font" id="font"
+                                class="pl-2 pr-0.5 text-xl font-extrabold outline-none text-white text-dropshadow w-full bg-transparent">
+                                <option class="text-gray notosans" value="noto">NotoSans (default)</option>
+                                <option class="text-gray wildwords" value="wildwords">WildWords (en only)</option>
+                                <option class="text-gray komika" value="komika">KomikaJam (en only)</option>
+                                <option class="text-gray bangers" value="bangers">Bangers (en only)</option>
+                                <option class="text-gray kalam" value="kalam">Kalam (en only)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="w-full flex flex-col bg-blue mt-[1px] overflow-hidden rounded-lg dropshadow raleway text-xl border-2 border-blue">
+                <div
+                    class="w-full h-[30%] pl-2 py-2 flex items-center justify-between text-white text-dropshadow text-sm font-normal">
+                    <span>Select the translation model to use</span>
+                    <a class="font-normal pr-2 underline" href="https://toriitranslate.com/faq" target="_blank"
+                        title="Link to FAQ page">
+                        <img src="../images/faq_white.svg" alt="FAQ" width="20" height="20">
+                    </a>
+                </div>
+                <div class="w-full h-full flex bg-white flex-row flex-nowrap items-center justify-between px-[10px]">
+                    <p class="font-bold text-gray">
+                        Model:
+                    </p>
+                    <div id="image-size-outer" class="w-[150px] h-[33px] rounded-2xl flex items-center">
+                        <div id="image-size-inner"
+                            class="flex flex-row scale-x-[0.98] scale-y-90 rounded-2xl bg-blue w-full h-full items-center justify-between">
+                            <select name="Translation Model" id="translation-model"
+                                class="pl-2 pr-0.5 text-xl font-extrabold outline-none notosans text-white text-dropshadow w-full bg-transparent">
+                                <option class="text-gray" value="gpt-4o-mini">GPT-4-mini</option>
+                                <option class="text-gray" value="gpt-4o">GPT-4</option>
+                                <option class="text-gray" value="google">Google</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex flex-row gap-4 justify-between">
+                <div
+                    class="w-fit flex flex-col bg-blue relative rounded-lg dropshadow hover:scale-110 raleway text-base border-2 border-blue">
+                    <div
+                        class="update-badge absolute rounded-full dropshadow text-xs hidden items-center justify-center text-white font-medium raleway bg-red-400 -top-2 -right-2 w-[18px] h-[18px]">
+                        1
+                    </div>
+                    <a id="extension-updates" href="https://toriitranslate.com/updates" target="_blank"
+                        class="px-[10px] py-1 text-white notosans font-bold text-dropshadow">
+                        What's new?
+                    </a>
+                </div>
+                <div
+                    class="w-fit flex flex-col bg-blue relative rounded-lg dropshadow hover:scale-110 raleway text-base border-2 border-blue">
+                    <a id="extension-updates"
+                        href="https://chromewebstore.google.com/detail/torii-image-translator/gkdekajjngdkocgiealohleibhdjhoed"
+                        target="_blank" class="px-[10px] py-1 text-white notosans font-bold text-dropshadow">
+                        Rate the extension!
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="extension-pages"
+            class="w-[400px] py-2 bg-offwhite flex flex-row justify-evenly items-center raleway font-extrabold text-xl">
+            <button id="extension-home-button" class="page-button rounded-2xl px-3 py-0.5 flex flex-col items-center">
+                <img id="home-image" src="../images/home-selected.svg" class="w-11 h-11">
+                <span id="home-text" class="text-blue -mt-1">Home</span>
+            </button>
+            <button id="extension-feedback-button"
+                class="page-button rounded-2xl px-3 py-0.5 flex flex-col items-center relative">
+                <div
+                    class="reply-badge absolute rounded-full dropshadow text-xs hidden items-center justify-center text-white font-medium raleway bg-red-400 bottom-3.5 right-0.5 w-[18px] h-[18px]">
+                    1
+                </div>
+                <img id="feedback-image" src="../images/feedback.svg" class="w-11 h-11">
+                <span id="feedback-text" class="text-gray -mt-1">Feedback</span>
+            </button>
+            <button id="extension-settings-button"
+                class="page-button rounded-2xl px-3 py-0.5 flex flex-col items-center relative">
+                <div
+                    class="update-badge absolute rounded-full dropshadow text-xs hidden items-center justify-center text-white font-medium raleway bg-red-400 bottom-3.5 right-0.5 w-[18px] h-[18px]">
+                    1
+                </div>
+                <img id="settings-image" src="../images/settings.svg" class="w-11 h-11">
+                <span id="settings-text" class="text-gray -mt-1">Settings</span>
+            </button>
+        </div>
+    </div>
+    <a class="absolute top-0 w-32 h-14 block" href="https://toriitranslate.com" target="_blank"
+        title="Link to website"></a>
+    <a class="absolute top-10 left-36 w-28 h-28 block" href="https://toriitranslate.com" target="_blank"
+        title="Link to website"></a>
+    <a id="discord-link" href="https://discord.gg/HGQngYJ4VZ" target="_blank" title="Link to Torii's Discord Server"
+        class="absolute top-3 right-3 bg-[#5865F2] rounded-full p-2 w-11 h-11 flex items-center justify-center">
+        <img src="../images/discord_logo.svg" alt="discord">
+    </a>
+    <script src="popup.js"></script>
+</body>
+
+</html>
