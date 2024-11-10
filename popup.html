@@ -25,8 +25,10 @@
   <input type="file" id="imageInput" accept="image/*">
   <button id="scanButton">Scan and Translate</button>
   <div id="result"></div>
-  
-  <!-- Load the OCR and Translate scripts before popup.js -->
+
+  <!-- Load Tesseract.js from a CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.1/dist/tesseract.min.js"></script>
+  <!-- Load your custom scripts -->
   <script src="ocr.js"></script>
   <script src="translate.js"></script>
   <script src="popup.js"></script>
